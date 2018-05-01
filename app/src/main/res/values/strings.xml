@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">NumberMunch</string>
+    <string name="main_title">NumberMunch</string>
+    <string name="primary_label">Number Munch!</string>
+    <string name="number_query">What is the answer to this problem?</string>
+    <string name="submit_answer">Try your luck!</string>
+    <string name="correct_answer">That\'s it! Good job!</string>
+    <string name="incorrect_answer">Sorry, not that one!</string>
+    <string name="correct_count">Correct: </string>
+    <string name="incorrect_count">Incorrect: </string>
+    <string name="answer_box_text">Answer here</string>
+</resources>
