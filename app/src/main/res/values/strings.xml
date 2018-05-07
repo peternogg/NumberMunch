@@ -6,7 +6,9 @@
     <string name="submit_answer">Try your luck!</string>
     <string name="correct_answer">That\'s it! Good job!</string>
     <string name="incorrect_answer">Sorry, not that one!</string>
-    <string name="correct_count">Correct: </string>
-    <string name="incorrect_count">Incorrect: </string>
+    <string name="correct_count">Correct Answers</string>
+    <string name="incorrect_count">Incorrect Answers</string>
     <string name="answer_box_text">Answer here</string>
+    <string name="equal_sign">=</string>
+    <string name="answer_entry_hint">Answer entry box</string>
 </resources>

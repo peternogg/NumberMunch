@@ -3,21 +3,28 @@ package peternogg.numbermunch
 import android.databinding.BaseObservable
 import java.util.*
 
-data class Problem(val x: Int, val y: Int, val operation: Char) {
-    private val result get() =
-        when (operation) {
-            '+' -> x + y
-            '-' -> x - y
-            '*' -> x * y
-            else -> 0
-        }
+open class Problem(val x: Int, val y: Int, val operation: Char) {
+    val result: Int = when (operation) {
+        '+' -> x + y
+        '-' -> x - y
+        '*' -> x * y
+        else -> 0
+    }
 
-    fun verifyAnswer(answer: Int): Boolean {
+    open fun verifyAnswer(answer: Int): Boolean {
         return result == answer
     }
 
-    override fun toString(): String {
-        return "$x $operation $y"
+    fun questionString(): String {
+        return "$x $operation $ = "
+    }
+}
+
+class SolvedProblem(parent: Problem, val answer: Int) : Problem(parent.x, parent.y, parent.operation) {
+    val isCorrect: Boolean = verifyAnswer(answer)
+
+    override fun verifyAnswer(answer: Int): Boolean {
+        return this.answer == result
     }
 }
 
@@ -30,28 +37,31 @@ fun randomProblem(): Problem {
             ops[Random().nextInt(ops.count())]
     )
 }
-class ProblemModel : BaseObservable() {
+
+class ProblemModel(val history: AnswerHistoryAdapter) : BaseObservable() {
     var currentProblem = randomProblem()
     var correct: Int = 0
     var incorrect: Int = 0
-    var userAnswer: String = ""
+    var userEntry: String = ""
 
     fun next() {
         currentProblem = randomProblem()
-        userAnswer = ""
+        userEntry = ""
         notifyPropertyChanged(BR._all)
     }
 
-    fun verifyAnswer(): Boolean {
-        val correctAnswer = currentProblem.verifyAnswer(userAnswer.toInt())
-        if (correctAnswer) {
-            correct += 1
-        } else {
-            incorrect += 1
-        }
+    fun submitAnswer(): Boolean? {
+        val solution = userEntry.toIntOrNull() ?: return null
+        val solvedProblem = SolvedProblem(currentProblem, solution)
 
+        if (solvedProblem.isCorrect)
+            correct++
+        else
+            incorrect++
+
+        history.add(solvedProblem)
         next()
-        return correctAnswer
+        return solvedProblem.isCorrect
     }
 }
 

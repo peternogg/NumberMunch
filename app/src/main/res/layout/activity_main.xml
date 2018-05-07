@@ -1,122 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <import type="peternogg.numbermunch.ProblemModel"/>
-        <variable name="model" type="ProblemModel"/>
+
+        <import type="peternogg.numbermunch.ProblemModel" />
+
+        <variable
+            name="model"
+            type="ProblemModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="27dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/number_query"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/userAnswer"
+            android:id="@+id/FirstNumberDisplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:ems="10"
-            android:inputType="numberSigned"
-            android:text="@={model.userAnswer}"
-            android:hint="@string/answer_box_text"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:minEms="2"
+            android:text="@{Integer.toString(model.currentProblem.x)}"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Display2"
+            android:typeface="monospace"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            tools:text="Answer Text" />
-
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="210dp"
-            android:layout_height="68dp"
-            android:layout_marginTop="36dp"
-            android:onClick="buttonClicked"
-            android:text="@string/submit_answer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userAnswer" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="999" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/SecondNumberDisplay"
             android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:layout_marginTop="24dp"
-            android:text="@{model.currentProblem.toString()}"
-            android:textSize="30sp"
+            android:layout_height="wrap_content"
+            android:minEms="2"
+            android:text="@{Integer.toString(model.currentProblem.y)}"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Display2"
+            android:typeface="monospace"
+            app:layout_constraintBaseline_toBaselineOf="@+id/OpDisplay"
+            app:layout_constraintStart_toEndOf="@+id/OpDisplay"
+            tools:text="999" />
+
+        <TextView
+            android:id="@+id/OpDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{Character.toString(model.currentProblem.operation)}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            app:layout_constraintBaseline_toBaselineOf="@+id/FirstNumberDisplay"
+            app:layout_constraintStart_toEndOf="@+id/FirstNumberDisplay"
+            tools:text="+" />
+
+        <TextView
+            android:id="@+id/equal"
+            android:layout_width="26dp"
+            android:layout_height="wrap_content"
+            android:text="@string/equal_sign"
+            android:textAppearance="@android:style/TextAppearance.Material.Display2"
+            app:layout_constraintBaseline_toBaselineOf="@+id/SecondNumberDisplay"
+            app:layout_constraintStart_toEndOf="@+id/SecondNumberDisplay" />
+
+        <EditText
+            android:id="@+id/AnswerEntry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:ems="4"
+            android:hint="@string/answer_entry_hint"
+            android:imeOptions="actionSend"
+            android:inputType="numberSigned"
+            android:text="@={model.userEntry}"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Display2"
+            android:typeface="monospace"
+            app:layout_constraintBaseline_toBaselineOf="@+id/equal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            tools:text="Problem Text" />
+            app:layout_constraintStart_toEndOf="@+id/equal"
+            tools:text="1234" />
 
         <LinearLayout
-            android:layout_width="395dp"
-            android:layout_height="301dp"
-            android:layout_marginBottom="9dp"
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="6dp"
-            android:orientation="vertical"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SecondNumberDisplay">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/CorrectLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/correct_count"
+                    android:textAlignment="center"
+                    android:textAppearance="@android:style/TextAppearance.Material.Body2" />
+
+                <TextView
+                    android:id="@+id/CorrectCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{Integer.toString(model.correct)}"
+                    android:textAlignment="center"
+                    android:textAppearance="@android:style/TextAppearance.Material.Display1"
+                    android:textColor="@color/MatteGreen"
+                    tools:text="7" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/IncorrectLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/incorrect_count"
+                    android:textAlignment="center"
+                    android:textAppearance="@android:style/TextAppearance.Material.Body2" />
+
+                <TextView
+                    android:id="@+id/IncorrectCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{Integer.toString(model.incorrect)}"
+                    android:textAlignment="center"
+                    android:textAppearance="@android:style/TextAppearance.Material.Display1"
+                    android:textColor="@color/MatteRed"
+                    tools:text="5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/submit">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-            <LinearLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/EntriesList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorAccent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:visibility="visible"
+                tools:listitem="@layout/answer_entry">
 
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/correct_count" />
+            </android.support.v7.widget.RecyclerView>
+        </FrameLayout>
 
-                <TextView
-                    android:id="@+id/correctCountDisplay"
-                    android:text="@{Integer.toString(model.correct)}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="textEnd" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/incorrect_count" />
-
-                <TextView
-                    android:id="@+id/incorrectCountDisplay"
-                    android:text="@{Integer.toString(model.incorrect)}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="textEnd" />
-            </LinearLayout>
-        </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </layout>

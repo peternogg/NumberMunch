@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/Question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
+        android:typeface="monospace"
+        tools:text="121 + 44 =" />
+
+    <TextView
+        android:id="@+id/UserAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
+        android:textColor="@color/MatteRed"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        tools:text="41" />
+
+    <TextView
+        android:id="@+id/CorrectAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Material.Body1"
+        android:textColor="@color/MatteGreen"
+        android:typeface="monospace"
+        tools:text="41" />
+</LinearLayout>
