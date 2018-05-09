@@ -5,19 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.View
 import android.widget.TextView
+import kotlinx.android.synthetic.main.answer_entry.view.*
 
 class AnswerHistoryAdapter(val history: MutableList<SolvedProblem>) : RecyclerView.Adapter<AnswerHistoryAdapter.ViewHolder>() {
 
-    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val Question: TextView
-        val UserAnswer: TextView
-        val CorrectAnswer: TextView
-        init {
-            Question = view.findViewById(R.id.Question)
-            UserAnswer = view.findViewById(R.id.UserAnswer)
-            CorrectAnswer = view.findViewById(R.id.CorrectAnswer)
-        }
-    }
+    class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val row = LayoutInflater.from(parent.context).inflate(R.layout.answer_entry, parent, false)
@@ -28,10 +20,10 @@ class AnswerHistoryAdapter(val history: MutableList<SolvedProblem>) : RecyclerVi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val problem = history[position]
 
-        holder.Question.text = problem.questionString()
-        holder.UserAnswer.text = problem.answer.toString()
-        holder.CorrectAnswer.text = problem.result.toString()
-        holder.CorrectAnswer.visibility = if (problem.isCorrect) View.VISIBLE else View.INVISIBLE
+        holder.view.Question.text = problem.questionString()
+        holder.view.UserAnswer.text = problem.answer.toString()
+        holder.view.CorrectAnswer.text = problem.result.toString()
+        holder.view.CorrectAnswer.visibility = if (problem.isCorrect) View.INVISIBLE else View.VISIBLE
     }
 
     override fun getItemCount(): Int {

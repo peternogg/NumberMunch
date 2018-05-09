@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.Material.Body1"
-        android:textColor="@color/MatteRed"
+        android:textColor="@color/MatteGreen"
         android:textStyle="bold"
         android:typeface="monospace"
         tools:text="41" />

@@ -16,7 +16,7 @@ open class Problem(val x: Int, val y: Int, val operation: Char) {
     }
 
     fun questionString(): String {
-        return "$x $operation $ = "
+        return "$x $operation $y = "
     }
 }
 
