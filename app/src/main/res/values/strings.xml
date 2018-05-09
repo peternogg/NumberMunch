@@ -10,5 +10,5 @@
     <string name="incorrect_count">Incorrect Answers</string>
     <string name="answer_box_text">Answer here</string>
     <string name="equal_sign">=</string>
-    <string name="answer_entry_hint">Answer entry box</string>
+    <string name="answer_entry_hint">?</string>
 </resources>

@@ -1,37 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/Question"
+<layout>
+    <data>
+        <import type="peternogg.numbermunch.SolvedProblem"/>
+        <import type="android.view.View"/>
+        <variable
+            name="problem"
+            type="SolvedProblem"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Material.Body1"
-        android:typeface="monospace"
-        tools:text="121 + 44 =" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/UserAnswer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Material.Body1"
-        android:textColor="@color/MatteGreen"
-        android:textStyle="bold"
-        android:typeface="monospace"
-        tools:text="41" />
+        <TextView
+            android:id="@+id/Question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{problem.questionString()}"
+            android:textAlignment="textStart"
+            android:textAppearance="@android:style/TextAppearance.Material.Display1"
+            android:typeface="monospace"
+            tools:text="121 + 44 = " />
 
-    <TextView
-        android:id="@+id/CorrectAnswer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Material.Body1"
-        android:textColor="@color/MatteGreen"
-        android:typeface="monospace"
-        tools:text="41" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/UserAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minEms="2"
+            android:text="@{Integer.toString(problem.answer)}"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Display1"
+            android:textColor="@{problem.isCorrect ? @color/MatteGreen : @color/MatteRed}"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            tools:text="41" />
+
+        <TextView
+            android:id="@+id/CorrectAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minEms="2"
+            android:text="@{Integer.toString(problem.result)}"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Display1"
+            android:typeface="monospace"
+            android:visibility="@{problem.isCorrect ? View.INVISIBLE : View.VISIBLE}"
+            tools:text="41" />
+    </LinearLayout>
+</layout>
