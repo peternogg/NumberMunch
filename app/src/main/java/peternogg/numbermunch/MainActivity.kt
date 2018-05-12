@@ -1,11 +1,10 @@
 package peternogg.numbermunch
 
 import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import org.jetbrains.anko.toast
@@ -14,7 +13,7 @@ import peternogg.numbermunch.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private val historyAdapter = AnswerHistoryAdapter(mutableListOf())
-    private val model = ProblemModel(historyAdapter)
+    private val model = NumberMunchModel(historyAdapter)
     private lateinit var historyDisplay: RecyclerView
 
 

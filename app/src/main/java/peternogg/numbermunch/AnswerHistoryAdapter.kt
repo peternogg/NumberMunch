@@ -1,17 +1,13 @@
 package peternogg.numbermunch
 
-import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.View
-import android.widget.TextView
-import kotlinx.android.synthetic.main.answer_entry.view.*
 import peternogg.numbermunch.databinding.AnswerEntryBinding
 
-class AnswerHistoryAdapter(val history: MutableList<SolvedProblem>) : RecyclerView.Adapter<AnswerHistoryAdapter.ViewHolder>() {
+class AnswerHistoryAdapter(private val history: MutableList<SolvedProblem>) : RecyclerView.Adapter<AnswerHistoryAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding: AnswerEntryBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: AnswerEntryBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(problem: SolvedProblem) {
             binding.problem = problem
             binding.executePendingBindings()

@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="peternogg.numbermunch.ProblemModel" />
+        <import type="peternogg.numbermunch.NumberMunchModel" />
 
         <variable
             name="model"
-            type="ProblemModel" />
+            type="NumberMunchModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
